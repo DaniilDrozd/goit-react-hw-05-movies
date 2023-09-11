@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { searchMovies } from 'Service/MovieAPI';
-import MovieList from './Movies';
+import { getSearchMovies } from 'Service/MovieAPI';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,12 +10,12 @@ function Movies() {
   const [loading, setLoading] = useState(false);
   const [movie, setMovie] = useState('');
 
-  const handleChange = e => {
-    setMovie(e.target.value);
+  const handleChange = event => {
+    setMovie(event.target.value);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
     setSearchParams({ query: movie });
   };
 
@@ -24,7 +24,7 @@ function Movies() {
       setLoading(true);
       const query = searchParams.get('query') || 'default_query';
       try {
-        const results = await searchMovies(query);
+        const results = await getSearchMovies(query);
         setList(results);
         setError(null);
       } catch (error) {
@@ -54,7 +54,7 @@ function Movies() {
       </form>
       {error && <div>{error}</div>}
       {loading && 'Loading '}
-      {list && <MovieList list={list} />}
+      {list && Array.isArray(list) && <MoviesList list={list} />}
     </div>
   );
 }

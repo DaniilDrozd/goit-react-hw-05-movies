@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getTrendingMovies } from 'Service/MovieAPI';
-import MovieList from 'components/MoviesList/MoviesList';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -9,9 +9,9 @@ function Home() {
 
   useEffect(() => {
     setLoading(true);
-    getTrendingMovies()
+    getTrendingMovies({ page: 1 })
       .then(results => {
-        setMovies(results);
+        setMovies(results.results);
         setError(null);
       })
       .catch(error => {
@@ -23,8 +23,7 @@ function Home() {
   return (
     <div>
       {error && <div>{error}</div>}
-      {loading && 'Loading ...'}
-      {movies && <MovieList list={movies} />}
+      {loading ? 'Loading ' : <MoviesList list={movies} />}{' '}
     </div>
   );
 }
