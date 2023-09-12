@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getMovieCredits } from 'Service/MovieAPI';
+import { getMovieCredits } from 'components/Service/MovieAPI';
 import { useParams } from 'react-router-dom';
 
 const Cast = () => {

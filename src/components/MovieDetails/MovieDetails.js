@@ -1,48 +1,38 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { useParams, Link, Outlet } from 'react-router-dom';
-import { getMovieInfo } from 'Service/MovieAPI';
+import { getMovieInfo } from '../Service/MovieAPI';
 
 function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { movieId } = useParams();
   const backLink = '/';
 
   useEffect(() => {
-    setLoading(true);
-    getMovieInfo(movieId)
-      .then(response => {
-        setMovie(response);
+    const Details = async () => {
+      try {
+        const movieData = await getMovieInfo(movieId);
+        setMovie(movieData);
         setError(null);
-      })
-      .catch(error => {
+      } catch (error) {
         setError('Something went wrong');
-      })
-      .finally(() => {
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    Details();
   }, [movieId]);
 
   return (
     <div>
       <Link to={backLink}>Go back</Link>
       {error && <div>{error}</div>}
-      {loading && 'Loading ...'}
-      {movie && (
+      {loading ? (
+        'Loading ...'
+      ) : movie ? (
         <div>
-          <img
-            src={
-              movie.poster_path
-                ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
-                : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
-            }
-            alt={movie.title}
-            width="200"
-            height="300"
-          />
-
-          <h2>{movie.title}</h2>
           <p>User Score: {Math.round(movie.vote_average * 10)} %</p>
           <div>
             <h3>Overview</h3>
@@ -57,6 +47,8 @@ function MovieDetails() {
             </div>
           </div>
         </div>
+      ) : (
+        <p>No movie details available.</p>
       )}
       <div>
         <ul>
