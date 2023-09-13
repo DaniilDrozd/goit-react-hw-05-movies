@@ -26,7 +26,7 @@ export const getSearchMovies = async (query, page) => {
 };
 
 export const getMovieInfo = async movieId => {
-  const response = await axios.get(`/movie/${movieId}/`);
+  const response = await axios.get(`/movie/${movieId}`);
   return response.data;
 };
 

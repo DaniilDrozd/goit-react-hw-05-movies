@@ -33,6 +33,16 @@ function MovieDetails() {
         'Loading ...'
       ) : movie ? (
         <div>
+          <img
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
+                : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
+            }
+            alt={movie.title}
+            width="200"
+            height="300"
+          />
           <p>User Score: {Math.round(movie.vote_average * 10)} %</p>
           <div>
             <h3>Overview</h3>
