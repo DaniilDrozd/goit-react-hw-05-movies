@@ -47,7 +47,7 @@ function Movies() {
           value={movie}
           autoComplete="off"
           autoFocus
-          placeholder="Movie title"
+          placeholder="Write movie title"
           name="movie"
           onChange={handleChange}
         />

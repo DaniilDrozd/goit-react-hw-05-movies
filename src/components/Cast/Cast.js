@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getMovieCredits } from 'components/Service/MovieAPI';
 import { useParams } from 'react-router-dom';
-
+import css from './Cast.module.css';
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
@@ -32,7 +32,7 @@ const Cast = () => {
       {error && <div>{error}</div>}
       {loading && 'Loading ...'}
       {cast && (
-        <ul>
+        <ul className={css.images}>
           {cast.cast.map(({ name, character, profile_path, id }) => (
             <li key={id}>
               <img
@@ -42,8 +42,10 @@ const Cast = () => {
                     ? `https://image.tmdb.org/t/p/w92${profile_path}`
                     : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
                 }
+                width=" 160"
+                height=" 170"
               />
-              <h3>{name}</h3>
+              <h3>{name} </h3>
               <p>{character}</p>
             </li>
           ))}

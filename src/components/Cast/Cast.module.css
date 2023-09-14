@@ -1,0 +1,9 @@
+.images {
+  display: grid;
+  max-width: calc(100vw - 28px);
+  grid-template-columns: repeat(5, 18%);
+  gap: 16px;
+  margin: 0px auto;
+  padding: 0px;
+  list-style: none;
+}

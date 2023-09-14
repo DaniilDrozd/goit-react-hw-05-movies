@@ -34,14 +34,13 @@ function MovieDetails() {
       {loading ? (
         'Loading ...'
       ) : movie ? (
-        <div>
+        <div className={css.styleDiv}>
           <img
             src={
               movie.poster_path
                 ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
                 : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
             }
-            alt={movie.title}
             width="200"
             height="300"
           />
