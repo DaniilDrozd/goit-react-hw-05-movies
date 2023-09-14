@@ -36,8 +36,9 @@ function MovieDetails() {
       ) : movie ? (
         <div className={css.styleDiv}>
           <img
+            alt={movie.title}
             src={
-              movie.poster_path
+              movie && movie.poster_path
                 ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
                 : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
             }
