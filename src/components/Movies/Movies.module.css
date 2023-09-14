@@ -1,6 +1,35 @@
-.FormSlyle {
+.btn {
+  margin-top: 2px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  position: absolute;
+  width: 140px;
+  margin-left: 80px;
+  border-radius: 8px;
+  background: #607d8b;
+  color: #fff;
+  font-size: 22px;
+  font-weight: normal;
+  font-family: monospace;
+  letter-spacing: 1px;
+  height: 37px;
 }
-.InputSlyle {
+.form {
+  justify-content: center;
+  display: flex;
 }
-.ButtonSlyle {
+.input {
+  border-radius: 8px;
+  margin-right: 300px;
+  padding: 0 10px;
+  line-height: 40px;
+  text-align: left;
+  height: 40px;
+  display: block;
+  float: left;
+  box-sizing: border-box;
+  width: 200px;
+
+  border: 1px solid #ddd;
 }

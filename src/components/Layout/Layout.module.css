@@ -1,0 +1,11 @@
+.Name {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  font-size: 25px;
+}
+
+.Link {
+  color: #222425;
+  text-decoration: none;
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { useParams, Link, Outlet } from 'react-router-dom';
 import { getMovieInfo } from '../Service/MovieAPI';
-
+import css from './MovieDetails.module.css';
 function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
@@ -27,7 +27,9 @@ function MovieDetails() {
 
   return (
     <div>
-      <Link to={backLink}>Go back</Link>
+      <Link to={backLink} className={css.Back}>
+        Go back
+      </Link>
       {error && <div>{error}</div>}
       {loading ? (
         'Loading ...'
@@ -43,14 +45,16 @@ function MovieDetails() {
             width="200"
             height="300"
           />
-          <p>User Score: {Math.round(movie.vote_average * 10)} %</p>
+          <p className={css.Score}>
+            User Score: {Math.round(movie.vote_average * 10)} %
+          </p>
           <div>
-            <h3>Overview</h3>
-            <p>{movie.overview}</p>
+            <h3 className={css.h3}>Overview</h3>
+            <p className={css.overview}>{movie.overview}</p>
           </div>
           <div>
-            <h3>Genres</h3>
-            <div>
+            <h3 className={css.h3}>Genres</h3>
+            <div className={css.Genres}>
               {movie.genres.map(({ name, id }) => {
                 return <p key={id}>{name}</p>;
               })}
@@ -61,14 +65,14 @@ function MovieDetails() {
         <p>No movie details available.</p>
       )}
       <div>
-        <ul>
+        <ul className={css.list}>
           <li>
-            <Link to={`cast`} state={{ from: backLink }}>
+            <Link to={`cast`} state={{ from: backLink }} className={css.li}>
               Cast
             </Link>
           </li>
           <li>
-            <Link to={`reviews`} state={{ from: backLink }}>
+            <Link to={`reviews`} state={{ from: backLink }} className={css.li}>
               Reviews
             </Link>
           </li>

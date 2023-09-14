@@ -10,8 +10,12 @@ function MovieList({ list }) {
     <div>
       <ul className={css.UlStyle}>
         {list.map(({ title, id }) => (
-          <li className={css.LiStyle} key={id}>
-            <Link to={`/movies/${id}`} state={{ from: location }}>
+          <li key={id}>
+            <Link
+              to={`/movies/${id}`}
+              state={{ from: location }}
+              className={css.Stylelinks}
+            >
               {title}
             </Link>
           </li>

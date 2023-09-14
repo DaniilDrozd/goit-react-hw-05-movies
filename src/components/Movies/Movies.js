@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getSearchMovies } from 'components/Service/MovieAPI';
 import MoviesList from 'components/MoviesList/MoviesList';
-
+import css from './Movies.module.css';
 function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [list, setList] = useState([]);
@@ -40,17 +40,20 @@ function Movies() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <input
+          className={css.input}
           type="text"
           value={movie}
           autoComplete="off"
           autoFocus
-          placeholder="Enter movie title"
+          placeholder="Movie title"
           name="movie"
           onChange={handleChange}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className={css.btn}>
+          Search
+        </button>
       </form>
       {error && <div>{error}</div>}
       {loading && 'Loading '}

@@ -16,13 +16,16 @@ export const getTrendingMovies = async ({ page }) => {
   return response.data;
 };
 
-export const getSearchMovies = async (query, page) => {
+export const getSearchMovies = async (movieName, query) => {
   const params = {
     query,
-    page,
   };
-  const response = await axios.get(`/search/movie`, { params });
-  return response.data;
+
+  const response = await axios.get(`/search/movie?query=${movieName}`, {
+    params,
+  });
+
+  return response.data.results;
 };
 
 export const getMovieInfo = async movieId => {

@@ -1,0 +1,11 @@
+.UlStyle {
+  list-style-type: none;
+  gap: 10px;
+  display: grid;
+}
+.Stylelinks {
+  color: #607d8b;
+  font-size: 25px;
+  font-weight: 600;
+  text-decoration: none;
+}
