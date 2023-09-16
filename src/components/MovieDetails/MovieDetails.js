@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Suspense } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieInfo } from '../Service/MovieAPI';
 import css from './MovieDetails.module.css';
 function MovieDetails() {
@@ -7,7 +7,8 @@ function MovieDetails() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const { movieId } = useParams();
-  const backLink = '/';
+  const location = useLocation();
+  const backLink = location.state?.from ?? '/';
 
   useEffect(() => {
     const Details = async () => {

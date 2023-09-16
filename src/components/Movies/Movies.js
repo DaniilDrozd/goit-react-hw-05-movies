@@ -9,7 +9,7 @@ function Movies() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [movie, setMovie] = useState('');
-
+  const query = searchParams.get('query');
   const handleChange = event => {
     setMovie(event.target.value);
   };
@@ -20,9 +20,8 @@ function Movies() {
   };
 
   useEffect(() => {
+    if (!query) return;
     const fetchData = async () => {
-      setLoading(true);
-      const query = searchParams.get('query') || 'default_query';
       try {
         const results = await getSearchMovies(query);
         setList(results);
@@ -36,7 +35,7 @@ function Movies() {
     };
 
     fetchData();
-  }, [searchParams]);
+  }, [query]);
 
   return (
     <div>
@@ -57,7 +56,7 @@ function Movies() {
       </form>
       {error && <div>{error}</div>}
       {loading && 'Loading '}
-      {list && Array.isArray(list) && <MoviesList list={list} />}
+      {list.length > 0 && <MoviesList list={list} />}
     </div>
   );
 }
